@@ -64,25 +64,25 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    # if there is an image
+    if ("image" in request.files):
+        image = request.files["image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        url = upload["url"]
+    else:
+        url = "https://avatarfiles.alphacoders.com/128/thumb-128984.png"
     if form.validate_on_submit():
-        # if there is an image
-        if ("image" in request.files):
-            image = request.files["image"]
-            image.filename = get_unique_filename(image.filename)
-            upload = upload_file_to_s3(image)
-            url = upload["url"]
-        else:
-            url = "https://avatarfiles.alphacoders.com/128/thumb-128984.png"
-            user = User(
-                username=form.data['username'],
-                email=form.data['email'],
-                password=form.data['password'],
-                profile_image=url,
-            )
-            db.session.add(user)
-            db.session.commit()
-            login_user(user)
-            return user.to_dict()
+        user = User(
+            username=form.data['username'],
+            email=form.data['email'],
+            password=form.data['password'],
+            profile_image=url,
+        )
+        db.session.add(user)
+        db.session.commit()
+        login_user(user)
+        return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
