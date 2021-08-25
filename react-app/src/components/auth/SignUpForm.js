@@ -12,12 +12,15 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [image, setImage] = useState(null);
+
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password));
-    } else {
+      await dispatch(signUp(username, email, password, image));
       dispatch(hideModal());
     }
   };
@@ -28,6 +31,11 @@ const SignUpForm = () => {
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
   };
 
   const updatePassword = (e) => {
@@ -60,6 +68,16 @@ const SignUpForm = () => {
           name="email"
           onChange={updateEmail}
           value={email}
+        ></input>
+      </div>
+      <div className="signup_div_image">
+        <input
+          name="profile_image"
+          type="file"
+          placeholder="Select Image"
+          accept="image/*"
+          onChange={updateImage}
+          className="signup_input_image"
         ></input>
       </div>
       <div>

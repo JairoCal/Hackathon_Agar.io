@@ -19,6 +19,15 @@ app = Flask(__name__)
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
+# For our sockets
+if os.environ.get("FLASK_ENV") == "production":
+    origins = [
+        "https: // mintbean-agario.herokuapp.com/",
+        "http: // mintbean-agario.herokuapp.com/"
+    ]
+else:
+    origins = "*"
+
 
 @login.user_loader
 def load_user(id):

@@ -29,8 +29,13 @@ const NavBar = () => {
         </NavLink>
       </div>
       {user && (
-        <div>
-          <p>Welcome, {user.username}!</p>
+        <div className="navbar_center">
+          <div>
+            <p>Welcome, {user.username}</p>
+          </div>
+          <div>
+            <img className="user_avatar" src={user.profile_image}></img>
+          </div>
         </div>
       )}
       {!user && (
