@@ -27,3 +27,18 @@
 .userInfo > div {
   padding: 0 8px
 }
+
+.user_avatar {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%
+}
+
+.navbar_center {
+  display: flex;
+  align-items: center
+}
+
+.navbar_center > div {
+  padding: 0 5px
+}

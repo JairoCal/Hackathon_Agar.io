@@ -21,7 +21,6 @@ const SignUpForm = () => {
     formData.append("image", image);
     if (password === repeatPassword) {
       await dispatch(signUp(username, email, password, image));
-    } else {
       dispatch(hideModal());
     }
   };
