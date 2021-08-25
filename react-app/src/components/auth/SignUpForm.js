@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { hideModal } from "../../store/modal";
+
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,8 @@ const SignUpForm = () => {
     e.preventDefault();
     if (password === repeatPassword) {
       await dispatch(signUp(username, email, password));
+    } else {
+      dispatch(hideModal());
     }
   };
 

@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 2px red;
+  padding: 10px;
+  height: 5vh
+}
+
+.userButtons {
+  display: flex;
+}
+
+.userButtons > div {
+  padding: 0 5px
+}
+
+.userInfo {
+  display: flex;
+}
+
+.userInfo > div {
+  padding: 0 8px
+}
