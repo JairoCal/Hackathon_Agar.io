@@ -2,10 +2,25 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import LogoutButton from "../auth/LogoutButton";
+import LoginForm from "../auth/LoginForm";
+import SignupForm from "../auth/SignUpForm";
+import { showModal, setCurrentModal } from "../../store/modal";
 import "./NavBar.css";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+
+  const showLogin = () => {
+    dispatch(setCurrentModal(LoginForm));
+    dispatch(showModal());
+  };
+
+  const showSignup = () => {
+    dispatch(setCurrentModal(SignupForm));
+    dispatch(showModal());
+  };
+
   return (
     <div className="navbar">
       <div>
@@ -16,14 +31,10 @@ const NavBar = () => {
       {!user && (
         <div className="userButtons">
           <div>
-            <NavLink to="/login" exact={true} activeClassName="active">
-              Login
-            </NavLink>
+            <a onClick={showLogin}>Login</a>
           </div>
           <div>
-            <NavLink to="/sign-up" exact={true} activeClassName="active">
-              Sign Up
-            </NavLink>
+            <a onClick={showSignup}>Signup</a>
           </div>
         </div>
       )}

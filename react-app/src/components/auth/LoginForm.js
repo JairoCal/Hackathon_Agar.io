@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import  { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import { hideModal} from '../../store/modal'
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,8 @@ const LoginForm = () => {
     const data = await dispatch(login(email, password));
     if (data.errors) {
       setErrors(data.errors);
+    } else {
+      dispatch(hideModal())
     }
   };
 
