@@ -6,7 +6,10 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: solid 2px red;
+  padding: 10px;
+  height: 5vh
 }
 
 .userButtons {
@@ -15,4 +18,12 @@
 
 .userButtons > div {
   padding: 0 5px
+}
+
+.userInfo {
+  display: flex;
+}
+
+.userInfo > div {
+  padding: 0 8px
 }

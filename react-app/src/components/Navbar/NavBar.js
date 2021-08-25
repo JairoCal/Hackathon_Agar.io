@@ -28,6 +28,11 @@ const NavBar = () => {
           Home
         </NavLink>
       </div>
+      {user && (
+        <div>
+          <p>Welcome, {user.username}!</p>
+        </div>
+      )}
       {!user && (
         <div className="userButtons">
           <div>
@@ -39,8 +44,10 @@ const NavBar = () => {
         </div>
       )}
       {user && (
-        <div>
-          <LogoutButton />
+        <div className="userInfo">
+          <div>
+            <LogoutButton />
+          </div>
         </div>
       )}
     </div>
